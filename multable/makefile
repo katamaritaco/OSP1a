@@ -5,7 +5,7 @@ TARGET = multable
 all: $(TARGET)
 
 $(TARGET): $(TARGET).c
-	clear;$(CC) $(CFLAGS) -o $(TARGET).o $(TARGET).c
+	clear;$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
 
 clean:
 	clear; rm -f *.o
