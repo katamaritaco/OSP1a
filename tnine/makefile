@@ -5,7 +5,7 @@ TARGET_OBJECT = tnine
 
 all: $(TARGET_OBJECT)
 
-$(TARGET): $(TARGET)
+$(TARGET_OBJECT): $(TARGET)
 	$(CC) $(CFLAGS) -o $(TARGET_OBJECT) $(TARGET)
 
 clean:

@@ -27,7 +27,17 @@ int main(int argc, char * argv[])
     {
         printf("letters: %s\n", *(letters + i)); //iterate through the array for the lulz
     }
-    
+
+    KEPtr testKEPtr = (KEPtr) malloc (sizeof(KEPtr));//(sizeof(struct KeyboardElement));//(sizeof(KEPtr));
+    testKEPtr->counter = 17;
+    testKEPtr->letters = "topeka";
+    keypad[0] = testKEPtr;
+
+
+    printf("end: %d %s\n", keypad[0]->counter, keypad[0]->letters);
+
+    printf("size of KEPtr: %lu size of struct: %lu\n", sizeof(KEPtr), sizeof(struct KeyboardElement));
+
  	return 0;
 }
 
