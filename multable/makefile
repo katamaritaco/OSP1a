@@ -8,5 +8,5 @@ $(TARGET): $(TARGET).c
 	clear;$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
 
 clean:
-	clear; rm -f *.o
+	clear; rm -f $(TARGET)
 
