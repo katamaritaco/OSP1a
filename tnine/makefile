@@ -1,12 +1,13 @@
 CC = gcc
 CFLAGS = -g -Wall
-TARGET = tnine
+TARGET = tnine.c p1a2.h printwrapper.o
+TARGET_OBJECT = tnine
 
-all: $(TARGET)
+all: $(TARGET_OBJECT)
 
-$(TARGET): $(TARGET).c
-	clear;$(CC) $(CFLAGS) -o $(TARGET) $(TARGET).c
+$(TARGET): $(TARGET)
+	$(CC) $(CFLAGS) -o $(TARGET_OBJECT) $(TARGET)
 
 clean:
-	clear; rm -f $(TARGET)
+	rm -f $(TARGET_OBJECT)
 
