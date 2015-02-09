@@ -20,7 +20,7 @@ int main(int argc, char * argv[])
 		}
 
 // YOUR CODE HERE
-    int i;
+    int i, j;
 
     //iterate through all arguments
     for (i = 0; i < argc - 1; i++)
@@ -28,15 +28,49 @@ int main(int argc, char * argv[])
         printf("letters: %s\n", *(letters + i)); //iterate through the array for the lulz
     }
 
-    KEPtr testKEPtr = (KEPtr) malloc (sizeof(KEPtr));//(sizeof(struct KeyboardElement));//(sizeof(KEPtr));
-    testKEPtr->counter = 17;
-    testKEPtr->letters = "topeka";
-    keypad[0] = testKEPtr;
+
+    
+    //allocate the KEPtrs
+    //Just allocate room for all ten, rather than checking to see if a number
+    //was pressed and then allocating accordingly, because of spec definition.
+    for (i = 0; i < 10; i++)//magic 10 from keypad size
+    {
+        KEPtr letterPtr = (KEPtr) malloc (sizeof(struct KeyboardElement));
+        //for tests
+        //letterPtr->counter = i;
+        //end tests
+        keypad[i] = letterPtr;
+    }
+
+    //tests
+    for (i = 0; i < 10; i++)
+    {
+        printf("keypad: %d counter: %d letters: %s\n", i, keypad[i]->counter, keypad[i]->letters);
+    }
+    //end tests
 
 
-    printf("end: %d %s\n", keypad[0]->counter, keypad[0]->letters);
+    
+    //go through every argument
+    for (i = 1; i < argc; i++)
+    {
+        char * argumentString = argv[i];
+        printf("str kek: %s\n", argumentString);
 
-    printf("size of KEPtr: %lu size of struct: %lu\n", sizeof(KEPtr), sizeof(struct KeyboardElement));
+        //go through all letters in the arg
+        for(j = 0; j < strlen(argumentString); j++)
+        {
+            //printf("letter: %c\n", argumentString[j]);
+
+        }
+    }
+
+
+
+
+    //printf("end: %d %s\n", keypad[0]->counter, keypad[0]->letters);
+
+    //printf("size of KEPtr: %lu size of struct: %lu\n", sizeof(KEPtr), sizeof(struct KeyboardElement));
 
  	return 0;
 }
