@@ -10,6 +10,7 @@
 KEPtr keypad[10];
 char * letters[10] = { "", "ABC", "DEF", "GHI", "JKL", "MNO", "PQRS", "TUV", "WXYZ", "" };
 
+void PrintFunction(char);
 
 int main(int argc, char * argv[])
 {
@@ -108,28 +109,18 @@ int main(int argc, char * argv[])
                     keypad[expectedNumber]->counter = (keypad[expectedNumber]->counter)++;
                 }
             }
-            else if(j % 2 == 1)
-            {
-            }
-             
         }
 
+        //test
+        //for ( j = 0; j < 10; j++){
+         //   printf("toplelm9: %d\n", keypad[j]->counter);        
+        //}
 
-        for ( j = 0; j < 10; j++){
-            printf("toplelm9: %d\n", keypad[j]->counter);        
-        }
 
         //freecharToPrint
-        printf("for real: %s\n", charToPrint);
     }
-
-
-
-
-    //printf("end: %d %s\n", keypad[0]->counter, keypad[0]->letters);
-
-    //printf("size of KEPtr: %lu size of struct: %lu\n", sizeof(KEPtr), sizeof(struct KeyboardElement));
-
+    printf("lol\n\n");
+    PrintWrapper(PrintFunction,'a');
  	return 0;
 }
 
@@ -137,3 +128,12 @@ void PrintFunction(char c)
 {
 	printf("%c", c);
 }
+
+
+
+
+
+
+
+
+
