@@ -65,41 +65,35 @@ int main(int argc, char * argv[])
         //assumption now that we will always have even num or chars in arg
         int numberTapped, timesTapped;
         char * charToPrint = (char *) malloc (sizeof(strlen(argumentString)));
-
+        int hasDashForFirstLetter = 0;
         charToPrint[strlen(argumentString)-1] = '\0';//null temrinated
         for(j = 0; j < strlen(argumentString); j++)
         {
             if(j % 2 == 0)//check if first char in a series
             {
+                hasDashForFirstLetter = 0;
                 numberTapped = argumentString[j] - '0';//convert to ascii, sub offset
                 //printf("number tapped: %d\n", numberTapped);
                 if(numberTapped < 2 || numberTapped > 9)
                 {
                     charToPrint[j] = '-';//invalid key pressed!
+                    hasDashForFirstLetter = 1;
                 } else
                 {
                     charToPrint[j] = numberTapped + '0';
+                }
+                if(j == strlen(argumentString)-1)//covers case of odd baddies
+                {
+                    PrintWrapper(PrintFunction, '-');
+                    //break out of arg
+                    goto basedGOTO;
                 }
             } 
             else if(j % 2 == 1)//second char in series
             {
                 timesTapped = argumentString[j] - '0';//converts to ascii, then sub offset
-                //printf("times tapped: %d\n", timesTapped);
- /*               if(timesTapped < 1 || timesTapped > 4)//4 because of PQRS/WXYZ
-                {
-                    charToPrint[j] = '-';//invalid times tapped!
-                } else
-                {
-                    charToPrint[j] = timesTapped + '0';
-                    
-                    //time to print!
-                    
-                    PrintWrapper(PrintFunction, '-');
-                }*/
 
-
-
-                if(timesTapped >= 1 && timesTapped <= 4 && charToPrint[j-1] != '-')//4 because of PQRS/WXYZ
+                if(timesTapped >= 1 && timesTapped <= 4 && charToPrint[j-1] != '-' && hasDashForFirstLetter == 0)//4 because of PQRS/WXYZ
                 {
                     charToPrint[j] = timesTapped + '0';
                     //time to print...
@@ -107,13 +101,16 @@ int main(int argc, char * argv[])
                 } else
                 {
                     charToPrint[j] = '-';//invalid times tapped!
-                    //PrintWrapper(PrintFunction, '-');//???
+                    PrintWrapper(PrintFunction, '-');//???
+                    //break out of arg
+                    goto basedGOTO;
                 }
 
 
 
             }
         }
+        basedGOTO: 
 
         PrintWrapper(PrintFunction, '\n');
 
@@ -130,45 +127,12 @@ int main(int argc, char * argv[])
                 }
             }
         }
-/*
-        char printingChar = ' ';
-        //print out words...
-        for(j = 0; j < strlen(charToPrint); j++)
-        {
-            if(j % 2 == 0)
-            {
-                if(charToPrint[j] == '-')
-                {
-                    printingChar = '-';
-                }
-                //print if odd num dash....
-            }
-            else if(j % 2 == 1)
-            {
-                if(charToPrint[j] == '-')
-                {
-                    printingChar = '-';
-                    PrintWrapper(PrintFunction, '-');
-                }
-                
-            }
-            PrintWrapper(PrintFunction, charToPrint[j]);
-
-        }
-
-
-            PrintWrapper(PrintFunction, '\n');
-*/
 
         //freecharToPrint
     }
-    printf("\nlol\n\n");
+   // printf("\nlol\n\n");
 
     
-
-
-
-
 
 
     //print out good values for number of times pressed
