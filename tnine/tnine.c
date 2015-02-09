@@ -38,6 +38,8 @@ int main(int argc, char * argv[])
         KEPtr letterPtr = (KEPtr) malloc (sizeof(struct KeyboardElement));
         //for tests
         //letterPtr->counter = i;
+        letterPtr->counter = 0;
+        letterPtr->letters = letters[i];
         //end tests
         keypad[i] = letterPtr;
     }
@@ -94,9 +96,28 @@ int main(int argc, char * argv[])
 
 
 
-        //now populate the objects
+        //now populate the keypad counter...
+        for(j = 0; j < strlen(charToPrint); j++)
+        {
+            int expectedNumber;
+            expectedNumber = charToPrint[j] - '0';
+            if(j % 2 == 0)
+            {
+                if(expectedNumber >= 2 && expectedNumber <= 9)
+                {
+                    keypad[expectedNumber]->counter = (keypad[expectedNumber]->counter)++;
+                }
+            }
+            else if(j % 2 == 1)
+            {
+            }
+             
+        }
 
 
+        for ( j = 0; j < 10; j++){
+            printf("toplelm9: %d\n", keypad[j]->counter);        
+        }
 
         //freecharToPrint
         printf("for real: %s\n", charToPrint);
