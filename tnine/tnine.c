@@ -57,25 +57,49 @@ int main(int argc, char * argv[])
         char * argumentString = argv[i];
         printf("str kek: %s\n", argumentString);
 
+
         //go through all letters in the arg
         //assumption now that we will always have even num or chars in arg
         int numberTapped, timesTapped;
+        char * charToPrint = (char *) malloc (sizeof(strlen(argumentString)));
+
+        charToPrint[strlen(argumentString)-1] = '\0';//null temrinated
         for(j = 0; j < strlen(argumentString); j++)
         {
-            //printf("letter: %c\n", argumentString[j]);
-            
             if(j % 2 == 0)//check if first char in a series
             {
                 numberTapped = argumentString[j] - '0';//convert to ascii, sub offset
                 printf("number tapped: %d\n", numberTapped);
-            }
-            else if(j % 2 == 1)
+                if(numberTapped < 2 || numberTapped > 9)
+                {
+                    charToPrint[j] = '-';//invalid key pressed!
+                } else
+                {
+                    charToPrint[j] = numberTapped + '0';
+                }
+            } 
+            else if(j % 2 == 1)//second char in series
             {
-                //need bounds checking on both still...
                 timesTapped = argumentString[j] - '0';//converts to ascii, then sub offset
                 printf("times tapped: %d\n", timesTapped);
+                if(timesTapped < 1 || timesTapped > 4)//4 because of PQRS/WXYZ
+                {
+                    charToPrint[j] = '-';//invalid times tapped!
+                } else
+                {
+                    charToPrint[j] = timesTapped + '0';
+                }
             }
         }
+
+
+
+        //now populate the objects
+
+
+
+        //freecharToPrint
+        printf("for real: %s\n", charToPrint);
     }
 
 
