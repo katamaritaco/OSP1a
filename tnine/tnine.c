@@ -24,10 +24,10 @@ int main(int argc, char * argv[])
     int i, j;
 
     //iterate through all arguments
-    for (i = 0; i < argc - 1; i++)
-    {
-        printf("letters: %s\n", *(letters + i)); //iterate through the array for the lulz
-    }
+    //for (i = 0; i < argc - 1; i++)
+    //{
+    //    printf("letters: %s\n", *(letters + i)); //iterate through the array for the lulz
+    //}
 
 
     
@@ -46,10 +46,10 @@ int main(int argc, char * argv[])
     }
 
     //tests
-    for (i = 0; i < 10; i++)
-    {
-        printf("keypad: %d counter: %d letters: %s\n", i, keypad[i]->counter, keypad[i]->letters);
-    }
+    //for (i = 0; i < 10; i++)
+    //{
+    //    printf("keypad: %d counter: %d letters: %s\n", i, keypad[i]->counter, keypad[i]->letters);
+    //}
     //end tests
 
 
@@ -58,7 +58,7 @@ int main(int argc, char * argv[])
     for (i = 1; i < argc; i++)
     {
         char * argumentString = argv[i];
-        printf("str kek: %s\n", argumentString);
+        //printf("str kek: %s\n", argumentString);
 
 
         //go through all letters in the arg
@@ -72,7 +72,7 @@ int main(int argc, char * argv[])
             if(j % 2 == 0)//check if first char in a series
             {
                 numberTapped = argumentString[j] - '0';//convert to ascii, sub offset
-                printf("number tapped: %d\n", numberTapped);
+                //printf("number tapped: %d\n", numberTapped);
                 if(numberTapped < 2 || numberTapped > 9)
                 {
                     charToPrint[j] = '-';//invalid key pressed!
@@ -84,7 +84,7 @@ int main(int argc, char * argv[])
             else if(j % 2 == 1)//second char in series
             {
                 timesTapped = argumentString[j] - '0';//converts to ascii, then sub offset
-                printf("times tapped: %d\n", timesTapped);
+                //printf("times tapped: %d\n", timesTapped);
                 if(timesTapped < 1 || timesTapped > 4)//4 because of PQRS/WXYZ
                 {
                     charToPrint[j] = '-';//invalid times tapped!
@@ -120,7 +120,23 @@ int main(int argc, char * argv[])
         //freecharToPrint
     }
     printf("lol\n\n");
-    PrintWrapper(PrintFunction,'a');
+
+
+
+    //print out good values for number of times pressed
+    for(i = 2; i < 10; i++)
+    {
+        char num;
+        num = i + '0';
+        PrintWrapper(PrintFunction, num);
+        PrintWrapper(PrintFunction, '\t');
+        PrintWrapper(PrintFunction, keypad[i]->counter + '0');
+        PrintWrapper(PrintFunction, '\n');
+    }
+
+
+
+
  	return 0;
 }
 
