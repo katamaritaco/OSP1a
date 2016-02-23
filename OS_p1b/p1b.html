@@ -1,0 +1,147 @@
+<html>
+
+<head>
+<title>Project 1b: xv6 Intro</title> 
+</head> 
+
+<body text=black bgcolor=white link=#00aacc vlink=#00aacc alink=orange>
+
+<center><table><tr><td width=500pt>
+
+<center>
+<font color=#00aacc>
+<h1>Project 1b: xv6 Intro</h1> 
+</font> 
+</center> 
+
+<p>We'll be doing kernel hacking projects in <b>xv6</b>, a port of a classic
+version of Unix to a modern processor, Intel's x86. It is a clean and
+beautiful little kernel, and thus a perfect object for our study and usage.</p> 
+
+<p>This first project is just a warmup, and thus relatively light on work. The 
+project should make you comfortable working with xv6 at least in terms of 
+compiling, running (and maybe debugging) xv6 and adding your own program to 
+run inside xv6. You are going to use xv6 for your future projects and so, 
+better learn it now than postponing. The goal of the project is simple: 
+<b>to add a system call to xv6.</b> 
+<!--
+Your system call, <code>getprocs()</code>, 
+simply returns how 
+many processes exist in the system at the time of the call.-->
+</p>
+
+<h2>Test Cases</h2>
+<blockquote><pre>
+python /u/c/s/cs537-1/testing/p1b/SysCallTest.pyc &lt;path-to-your-xv6-folder&gt;
+</pre></blockquote>
+
+<h2>Details</h2>
+Your new syscall should look like this: <b><code>int getprocs(void)</code></b>. 
+Your system call returns the number of processes (<b>irrespective of their state 
+- sleeping or running or other states</b>) that exist in the system on 
+success, and -1 on failure.
+
+<h2>Tips</h2> 
+
+<p>Find some other system call, like <code>getpid()</code>. 
+Basically, copy it in all the 
+ways you think are needed. Then modify it to do what you need.</p>
+
+<p>Most of the time will be spent on understanding the code. There shouldn't 
+be a whole lot of code added.</p>
+
+<p><b>Hint:</b> The scheduler in the OS is responsible for choosing the process to run 
+next on a CPU. In xv6, the scheduler walks through the list of processes and 
+choose a process to run next on the CPU. Your system call should basically 
+mimic this functionality. Now the problem is that you have to search for the 
+scheduler in the xv6 codebase. Since you are totally new to xv6, we will offer 
+you a tip to find it - grep for the term "scheduler" in the xv6 codebase.</p>
+
+<p>Using gdb (the debugger) may be helpful in understanding code, doing code 
+traces, and is helpful for later projects too. Get familiar with this fine 
+tool!</p>
+
+<h2>To Learn</h2>
+
+Now that you are using xv6, you could learn a lot of things by looking
+at the practical implementation of the concepts that you learned 
+in class. 
+
+<ul>
+<li>Context Switch</li>
+<li>System calls</li>
+<li>Fork</li>
+<li>Scheduler (policy)</li>
+<li>Page Table</li>
+</ul>
+
+<b> These are not part of the project but to help you understand the concepts
+better.</b>
+
+<h2>Testing</h2>
+<b><center>First, make sure the kernel boots fine after you make your changes 
+to the kernel. This is a basic test that every xv6 submission should 
+pass.</center></b> 
+<br>To verify if you kernel changes work fine, you might have to 
+write an userspace program and make the necessary system calls. In this
+case, the program would look like this:
+
+<blockquote><pre>
+printf(1, "Number of processes running in the system: %d", getprocs());
+</blockquote></pre>
+
+<p>xv6 does not support tools like text editor like vi or compiler like gcc. 
+So, the question is how to write userspace programs in xv6 to test the new 
+system call that you just added. The solution is to write programs in your 
+host machine (machine from where you run xv6), compile it and include the 
+binary into xv6 image. That sounds nice but how to do this?</p>
+
+<p>The folder named user under the xv6 directory contains the source code for 
+the 
+tools like cat, ls etc. that are available in xv6. Copy one of the source 
+files (e.g. cat.c) and edit the file to include your changes like the printf 
+statement above. Now edit the user/makefile.mk file to include the new file 
+that you created for compilation. If you build xv6 again and run it, you 
+should be able to see your program when you do ls (assuming the compilation 
+finished fine without any errors).</p>
+
+<h2>The Code</h2> 
+
+<p>The source code for xv6 (and associated README) can be found in <b>
+~cs537-2/public/html/xv6.tar.gz</b>. Everything you need to build and run and even 
+debug the kernel is in there; start by reading the README.</p> 
+
+<p>You may also find the following book about xv6 useful, written by the
+same team that ported xv6 to x86:
+<a href=http://pdos.csail.mit.edu/6.828/2012/xv6/book-rev7.pdf>book</a>.
+<b>Particularly useful for this project: Chapters 0 and 3 (and maybe 4).</b> 
+Note that our version of xv6 is slightly older than the book's, so you may
+encounter a difference here and there.</p> 
+
+<!--
+<h2>Hand-in</h2>
+
+<p>For the xv6 part of the project, copy all of your source files (but not .o
+files, please, or binaries!) into the <code>xv6/</code> subdirectory of your p1
+directory. A simple way to do this is to copy everything into the destination
+directory, then type <code>make</code> to make sure it builds, and then
+type <code>make clean</code> to remove unneeded files.</p>
+
+<p>
+<blockquote><pre>
+shell% cp -r . ~cs537-2/handin/sankarp/p1/xv6
+shell% cd ~cs537-2/handin/sankarp/p1/xv6
+shell% make
+shell% make clean
+</pre> </blockquote>
+
+<h2>Verification Scripts</h2>
+
+If any?
+
+<h2>Readme</h2>
+
+If any?
+-->
+
+</td> </tr> </table> </center> </body> </html> 
